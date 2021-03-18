@@ -4,21 +4,27 @@ import Browser
 import Cats.View
 import Counter.View
 import Element exposing (..)
-import Element.Events exposing (..)
-import Element.Input exposing (button)
-import Element.Region exposing (..)
+import Element.Region exposing (heading)
+import FontAwesome.Solid as Icon
+import FontAwesome.Styles
+import Menu.View exposing (menuItem, menuSection, menuTitle)
 import Router.Routes exposing (..)
 import Router.Types exposing (Msg(..))
 import Styles
 import Types exposing (..)
+import Wallet.View
 
 
 view : Model -> Browser.Document Types.Msg
 view model =
-    { title = "fiis"
+    { title = "Fiis"
     , body =
-        [ Element.layout [] <|
-            el [ width (px 800), centerX ] (renderRoute model)
+        [ Element.layout Styles.layout <|
+            column Styles.container
+                [ html FontAwesome.Styles.css
+                , header
+                , page model
+                ]
         ]
     }
 
@@ -27,12 +33,11 @@ renderRoute : Model -> Element Types.Msg
 renderRoute model =
     case model.router.page of
         Home ->
-            column
-                [ spacing 5 ]
-                [ el ([ heading 1 ] ++ Styles.title) (text "Welcome")
+            column [ spacing 5 ]
+                [ el [ heading 1 ] (text "Welcome")
                 , row [ spacing 5 ]
-                    [ link ([ padding 5 ] ++ Styles.button) { url = toPath CatsPage, label = text "Go to Cats" }
-                    , link ([ padding 5 ] ++ Styles.button) { url = toPath CounterPage, label = text "Go to Counter" }
+                    [ link [ padding 5 ] { url = toPath CatsPage, label = text "Go to Cats" }
+                    , link [ padding 5 ] { url = toPath CounterPage, label = text "Go to Counter" }
                     ]
                 ]
 
@@ -44,3 +49,37 @@ renderRoute model =
 
         CounterPage ->
             Element.map MsgForCounter (Counter.View.view model.counter)
+
+        WalletPage ->
+            Element.map MsgForWallet (Wallet.View.view model.wallet)
+
+
+sidebar : Element Types.Msg
+sidebar =
+    column
+        Styles.sidebar
+        [ menuTitle "GENERAL"
+        , menuSection
+            [ menuItem Icon.tachometerAlt "Dashboard" True
+            ]
+        , menuTitle "ADMINISTRATION"
+        , menuSection
+            [ menuItem Icon.edit "Forms" False
+            , menuItem Icon.desktop "UI Elements" False
+            , menuItem Icon.table "Tables" False
+            , menuItem Icon.chartBar "Presentations" False
+            , menuItem Icon.cog "Layouts" False
+            ]
+        ]
+
+
+header : Element Types.Msg
+header =
+    row
+        Styles.header
+        [ image [ width <| px 45, height <| px 45 ] { src = "building.png", description = "logo" } ]
+
+
+page : Model -> Element Types.Msg
+page model =
+    row Styles.page [ sidebar, renderRoute model ]

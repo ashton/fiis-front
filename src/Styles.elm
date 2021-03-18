@@ -1,18 +1,52 @@
-module Styles exposing (button, title)
+module Styles exposing (container, header, layout, page, sidebar)
 
 import Element exposing (..)
 import Element.Background as Background
 import Element.Font as Font
 
 
-title : List (Attr decorative msg)
-title =
-    [ Font.color (rgb 0 0 0)
-    , Font.size 40
+layout : List (Attr () msg)
+layout =
+    [ Background.color <| rgb255 40 42 54
+    , Font.family
+        [ Font.typeface "BlinkMacSystemFont"
+        , Font.typeface "-apple-system"
+        , Font.typeface "Segoe UI"
+        , Font.typeface "Roboto"
+        , Font.typeface "Oxygen"
+        , Font.typeface "Ubuntu"
+        , Font.typeface "Cantarell"
+        , Font.typeface "Fira Sans"
+        , Font.typeface "Droid Sans"
+        , Font.typeface "Helvetica Neue"
+        , Font.typeface "Helvetica"
+        , Font.typeface "Arial"
+        , Font.sansSerif
+        ]
+    , Font.color <| rgb255 248 248 242
     ]
 
 
-button : List (Attr decorative msg)
-button =
-    [ Background.color (rgb 0.9 0.9 0.9)
+sidebar : List (Attribute msg)
+sidebar =
+    [ height fill
+    , width <| px 250
+    , Background.color <| rgb255 68 71 90
+    , paddingEach { top = 32, left = 8, right = 8, bottom = 0 }
+    , spacing 12
     ]
+
+
+header : List (Attribute msg)
+header =
+    [ width fill, paddingXY 12 8, Background.color <| rgb255 68 71 90 ]
+
+
+page : List (Attribute msg)
+page =
+    [ width fill, height fill ]
+
+
+container : List (Attribute msg)
+container =
+    [ width fill, height fill, spacing 2 ]

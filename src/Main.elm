@@ -2,7 +2,6 @@ module Main exposing (main)
 
 import Browser
 import Html exposing (..)
-import Html.Events exposing (onClick)
 import Router.Types
 import Types exposing (..)
 import Update exposing (init, update)

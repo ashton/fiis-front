@@ -6,14 +6,13 @@ import Element.Events exposing (..)
 import Element.Input exposing (button)
 import Element.Region exposing (..)
 import RemoteData exposing (..)
-import Styles
 
 
 view : Model -> Element Msg
 view model =
     column [ spacing 5 ]
-        [ el ([ heading 2 ] ++ Styles.title) (text model.topic)
-        , button ([ padding 5 ] ++ Styles.button) { onPress = Just MorePlease, label = text "More Please!" }
+        [ el [ heading 2 ] (text model.topic)
+        , button [ padding 5 ] { onPress = Just MorePlease, label = text "More Please!" }
         , case model.gifUrl of
             NotAsked ->
                 text ""
