@@ -10,6 +10,7 @@ type Page
     | CatsPage
     | CounterPage
     | WalletPage
+    | ExplorerPage
 
 
 routes : Parser (Page -> a) a
@@ -20,6 +21,7 @@ routes =
         , map CatsPage (s "cats")
         , map CounterPage (s "counter")
         , map WalletPage (s "wallet")
+        , map ExplorerPage (s "explorer")
         ]
 
 
@@ -40,3 +42,6 @@ toPath page =
 
         WalletPage ->
             "/wallet"
+
+        ExplorerPage ->
+            "/explorer"

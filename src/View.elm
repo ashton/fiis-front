@@ -5,6 +5,7 @@ import Cats.View
 import Counter.View
 import Element exposing (..)
 import Element.Region exposing (heading)
+import Explorer.View
 import FontAwesome.Solid as Icon
 import FontAwesome.Styles
 import Menu.View exposing (menuItem, menuSection, menuTitle)
@@ -53,15 +54,15 @@ renderRoute model =
         WalletPage ->
             Element.map MsgForWallet (Wallet.View.view model.wallet)
 
+        ExplorerPage ->
+            Element.map MsgForExplorer (Explorer.View.view model.explorer)
+
 
 sidebar : Element Types.Msg
 sidebar =
-    column
-        Styles.sidebar
+    column Styles.sidebar
         [ menuTitle "GENERAL"
-        , menuSection
-            [ menuItem Icon.tachometerAlt "Dashboard" True
-            ]
+        , menuSection [ menuItem Icon.tachometerAlt "Dashboard" True ]
         , menuTitle "ADMINISTRATION"
         , menuSection
             [ menuItem Icon.edit "Forms" False
@@ -75,8 +76,7 @@ sidebar =
 
 header : Element Types.Msg
 header =
-    row
-        Styles.header
+    row Styles.header
         [ image [ width <| px 45, height <| px 45 ] { src = "building.png", description = "logo" } ]
 
 
