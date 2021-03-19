@@ -1,7 +1,6 @@
 module Explorer.Styles exposing (card, cardInfo, cardInfoItem, cardInfoTitle, cardInfoValue, cardTitle)
 
 import Element exposing (..)
-import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
 
@@ -10,7 +9,6 @@ card : List (Attribute msg)
 card =
     [ paddingEach { top = 20, right = 30, bottom = 20, left = 24 }
     , spacing 24
-    , Background.color <| rgb255 108 214 126
     , Border.rounded 6
     ]
 
