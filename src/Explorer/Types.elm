@@ -4,7 +4,9 @@ import RemoteData exposing (WebData)
 
 
 type alias Model =
-    WebData Funds
+    { funds : WebData Funds
+    , filter : Maybe String
+    }
 
 
 type alias Funds =
@@ -28,3 +30,4 @@ type Indicative
 
 type Msg
     = FundsRetrieved (WebData Funds)
+    | Filter String

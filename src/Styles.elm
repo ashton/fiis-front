@@ -1,7 +1,8 @@
-module Styles exposing (container, header, layout, page, sidebar)
+module Styles exposing (container, header, layout, page, pageHeaderIcon, sidebar)
 
 import Element exposing (..)
 import Element.Background as Background
+import Element.Border as Border
 import Element.Font as Font
 
 
@@ -45,6 +46,17 @@ header =
 page : List (Attribute msg)
 page =
     [ width fill, height fill ]
+
+
+pageHeaderIcon : List (Attribute msg)
+pageHeaderIcon =
+    [ width <| px 48
+    , height <| px 48
+    , alignLeft
+    , Background.color <| rgb255 189 147 249
+    , Border.rounded 3
+    , Font.color <| rgb255 40 42 54
+    ]
 
 
 container : List (Attribute msg)

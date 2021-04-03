@@ -4,13 +4,14 @@ import Explorer.Data exposing (getFunds)
 import Explorer.Types exposing (..)
 import RemoteData exposing (RemoteData(..))
 import Return exposing (Return, return)
+import String.Extra exposing (nonEmpty)
 import Types
 
 
 init : Return Msg Model
 init =
     return
-        NotAsked
+        { funds = NotAsked, filter = Nothing }
         getFunds
 
 
@@ -28,4 +29,7 @@ updateExplorer : Msg -> Model -> Return Msg Model
 updateExplorer msg model =
     case msg of
         FundsRetrieved funds ->
-            return funds Cmd.none
+            return { model | funds = funds } Cmd.none
+
+        Filter term ->
+            return { model | filter = nonEmpty term } Cmd.none
