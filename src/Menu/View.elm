@@ -11,7 +11,7 @@ import Types exposing (..)
 
 menuTitle : String -> Element Msg
 menuTitle title =
-    el [ Font.color <| rgb255 189 147 249, Font.size 12, Font.bold, Font.letterSpacing 1.6 ] <| text title
+    el [ Font.color <| rgb255 189 147 249, Font.size 12, Font.bold, Font.letterSpacing 1.6 ] <| text <| String.toUpper title
 
 
 menuItem : Icon -> String -> Bool -> Element Msg

@@ -5,14 +5,14 @@ import Explorer.Types exposing (Fund, Indicative)
 
 fundIndicative : Fund -> Explorer.Types.Indicative
 fundIndicative fund =
-    if fund.dy > 6 then
-        if fund.pricePerQuota > fund.lastPrice then
+    if fund.dy > 7 then
+        if fund.priceIndicator <= 1 then
             Explorer.Types.Good
 
         else
             Explorer.Types.Medium
 
-    else if fund.pricePerQuota > fund.lastPrice then
+    else if fund.priceIndicator <= 1 then
         Explorer.Types.Medium
 
     else

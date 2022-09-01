@@ -9,6 +9,7 @@ import Explorer.View
 import FontAwesome.Solid as Icon
 import FontAwesome.Styles
 import Menu.View exposing (menuItem, menuSection, menuTitle)
+import Projections.View
 import Router.Routes exposing (..)
 import Router.Types exposing (Msg(..))
 import Styles
@@ -57,13 +58,18 @@ renderRoute model =
         ExplorerPage ->
             Element.map MsgForExplorer (Explorer.View.view model.explorer)
 
+        ProjectionsPage ->
+            Element.map MsgForProjections (Projections.View.view model.projections)
+
 
 sidebar : Element Types.Msg
 sidebar =
     column Styles.sidebar
-        [ menuTitle "GENERAL"
+        [ menuTitle "general"
         , menuSection [ menuItem Icon.tachometerAlt "Dashboard" True ]
-        , menuTitle "ADMINISTRATION"
+        , menuTitle "projections"
+        , menuSection [ menuItem Icon.chartLine "Dashboard" False ]
+        , menuTitle "administration"
         , menuSection
             [ menuItem Icon.edit "Forms" False
             , menuItem Icon.desktop "UI Elements" False

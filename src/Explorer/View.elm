@@ -6,7 +6,6 @@ import Element.Background as Background
 import Element.Font as Font
 import Element.Input as Form
 import Explorer.Helper exposing (fundIndicative, indicativeComparison)
-import Explorer.Styles as Styles
 import Explorer.Types exposing (..)
 import FontAwesome.Attributes exposing (lg)
 import FontAwesome.Icon exposing (viewStyled)
@@ -87,23 +86,23 @@ cardColor fund =
 
 card : Fund -> Element Msg
 card fund =
-    column (List.append Styles.card (cardColor fund))
+    column (List.append CoreStyles.card (cardColor fund))
         [ column []
-            [ el Styles.cardInfoTitle <| text "Papel"
-            , el Styles.cardTitle <| text fund.code
+            [ el CoreStyles.cardInfoTitle <| text "Papel"
+            , el CoreStyles.cardTitle <| text fund.code
             ]
-        , row Styles.cardInfo
-            [ column Styles.cardInfoItem
-                [ el Styles.cardInfoTitle <| text "Preço"
-                , el Styles.cardInfoValue <| text <| "R$ " ++ format locale fund.lastPrice
+        , row CoreStyles.cardInfo
+            [ column CoreStyles.cardInfoItem
+                [ el CoreStyles.cardInfoTitle <| text "Preço"
+                , el CoreStyles.cardInfoValue <| text <| "R$ " ++ format locale fund.lastPrice
                 ]
-            , column Styles.cardInfoItem
-                [ el Styles.cardInfoTitle <| text "DY"
-                , el Styles.cardInfoValue <| text <| format locale fund.dy ++ "%"
+            , column CoreStyles.cardInfoItem
+                [ el CoreStyles.cardInfoTitle <| text "DY"
+                , el CoreStyles.cardInfoValue <| text <| format locale fund.dy ++ "%"
                 ]
-            , column Styles.cardInfoItem
-                [ el Styles.cardInfoTitle <| text "VP / Cota"
-                , el Styles.cardInfoValue <| text <| "R$ " ++ format locale fund.pricePerQuota
+            , column CoreStyles.cardInfoItem
+                [ el CoreStyles.cardInfoTitle <| text "P / VP "
+                , el CoreStyles.cardInfoValue <| text <| format locale fund.priceIndicator
                 ]
             ]
         ]

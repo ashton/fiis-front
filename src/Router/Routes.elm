@@ -11,6 +11,7 @@ type Page
     | CounterPage
     | WalletPage
     | ExplorerPage
+    | ProjectionsPage
 
 
 routes : Parser (Page -> a) a
@@ -22,6 +23,7 @@ routes =
         , map CounterPage (s "counter")
         , map WalletPage (s "wallet")
         , map ExplorerPage (s "explorer")
+        , map ProjectionsPage (s "projections")
         ]
 
 
@@ -45,3 +47,6 @@ toPath page =
 
         ExplorerPage ->
             "/explorer"
+
+        ProjectionsPage ->
+            "/projections"

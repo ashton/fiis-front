@@ -11,7 +11,7 @@ getFunds : Cmd Msg
 getFunds =
     let
         url =
-            "https://matheusashton-fiis.builtwithdark.com/fiis/explore"
+            "https://fiis-api-4x3iz.ondigitalocean.app/api/funds/explorer"
 
         returnMsg =
             fromResult >> FundsRetrieved
@@ -26,7 +26,7 @@ decodeFund : Decode.Decoder Fund
 decodeFund =
     let
         map =
-            Decode.map5
+            Decode.map4
 
         field =
             Decode.field
@@ -39,7 +39,6 @@ decodeFund =
     in
     map Fund
         (field "code" string)
-        (field "name" string)
         (field "dy" <| withDefault 0.0 float)
         (field "last_price" float)
         (field "p_vp" float)

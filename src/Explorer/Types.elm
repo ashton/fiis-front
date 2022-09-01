@@ -15,10 +15,9 @@ type alias Funds =
 
 type alias Fund =
     { code : String
-    , name : String
     , dy : Float
     , lastPrice : Float
-    , pricePerQuota : Float
+    , priceIndicator : Float
     }
 
 
